@@ -8,35 +8,27 @@ public class Contact_Form {
 
     WebDriver driver;
 
-    By pFirstName = By.xpath("//input[@id='u_SCn_4607']");
-    By pLastName = By.xpath("//input[@id='u_SCn_338354']");
-    By pEmail = By.xpath("//input[@id='u_SCn_4608']");
-    By pSubject = By.xpath("//select[@id='u_SCn_338367']");
-    By pInquiry = By.xpath("//textarea[@id='u_SCn_4609']");
-
-    By pForm = By.xpath("//form[@id='f']");
-
     public By pFirstName() {
-        return By.xpath("//input[@id='u_SCn_4607']");
+        return By.xpath("//input[@placeholder='Your first name']");
     }
 
     public By pLastName() {
-        return By.xpath("//input[@id='u_SCn_338354']");
+        return By.xpath("//input[@placeholder='Your last name']");
     }
 
     public By pEmail() {
-        return By.xpath("//input[@id='u_SCn_4608']");
+        return By.xpath("//input[@placeholder='Your email address']");
     }
 
     public By pSubject() {
-        return By.xpath("//select[@id='u_SCn_338367']");
+        return By.cssSelector("#u_pPo_338367");
     }
 
     public By pInquiry() {
-        return By.xpath("//textarea[@id='u_SCn_4609']");
+        return By.xpath("//textarea[@placeholder='Your comment']");
     }
 
     public By pForm() {
-        return By.xpath("//form[@id='f']");
+        return By.id("f");
     }
 }

@@ -4,6 +4,7 @@ import action.Base;
 import formSmartPages.Contact_Form;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -31,23 +32,39 @@ Contact_Form cf = new Contact_Form();
         // Write code here that turns the phrase above into concrete actions
        getIframe();
        scroll(cf.pForm());
-
     }
-    @Then("user fills out the form")
-    public void user_fills_out_the_form() {
+    @And("user fills out the form")
+
+    public void user_fills_out_the_form() { //Using global properties file to provide data
         // Write code here that turns the phrase above into concrete actions
-        pSendKeys(cf.pFirstName());
-
-
+       pSendKeys(cf.pFirstName(),pRead_Properties_Files("firstname"));
+       pSendKeys(cf.pLastName(),pRead_Properties_Files("lastname"));
+       pSendKeys(cf.pEmail(),pRead_Properties_Files("email"));
+       //pSelect_Handle(cf.pSubject());
+        pSendKeys(cf.pInquiry(),pRead_Properties_Files("inquiry"));
     }
-    @When("user finish he closes the application")
-    public void user_finish_he_closes_the_application() {
-        // Write code here that turns the phrase above into concrete actions
 
+    @Given("user is in form hompage")
+    public void user_is_in_form_hompage() {
+        // Write code here that turns the phrase above into concrete actions
+        System.out.println("User is on the hompage");
+    }
+    @Then("user fills the form with {string},{string},{string},{string}")
+    public void user_fills_the_form_with(String firstname, String lastname, String email,String inquiry) {
+        // Write code here that turns the phrase above into concrete actions
+        waitForElementToBeVisible(cf.pFirstName());
+        pSendKeys(cf.pFirstName(),firstname);
+        waitForElementToBeVisible(cf.pLastName());
+        pSendKeys(cf.pLastName(),lastname);
+        waitForElementToBeVisible(cf.pEmail());
+        pSendKeys(cf.pEmail(),email);
+        //pSelect_Handle(cf.pSubject(),subject);
+        waitForElementToBeVisible(cf.pInquiry());
+        pSendKeys(cf.pInquiry(),inquiry);
     }
 
     @After
     public void quitDriver(){
-        //quit();
+        quit();
     }
 }

@@ -6,11 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.FileInputStream;
 import java.time.Duration;
 import java.util.Properties;
+import java.util.Random;
 
 public class Base {
     public WebDriver driver = null;
@@ -30,8 +32,8 @@ public class Base {
         driver.get(pRead_Properties_Files("url"));
     }
 
-    public void pSendKeys(By element){
-        driver.findElement(element).sendKeys();
+    public void pSendKeys(By element,String key){
+        driver.findElement(element).sendKeys(key);
     }
 
     public boolean pClick()
@@ -92,8 +94,24 @@ public class Base {
     protected void waitForElementToBeVisible(By locator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        System.out.println(locator + " Is present");
     }
 
+
+    public void pSelect_Handle(By element){
+        Random random = new Random();
+        // Generate a random number between 1 and 2 (inclusive)
+        int randomNumber = random.nextInt(2) + 1;
+        Select dropdown = new Select(driver.findElement(element));
+        dropdown.selectByIndex(randomNumber);
+        System.out.println("Random number generated " + randomNumber);
+    }
+
+    public void pSelect_Handle(By element, int option){
+        Select dropdown = new Select(driver.findElement(element));
+        dropdown.selectByIndex(option);
+        System.out.println("Random number generated " + option);
+    }
 
 
 }

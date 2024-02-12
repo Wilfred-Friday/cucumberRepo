@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/feature/formSmart.feature" , glue = "stepDefinition" ,
-        tags = "@regression",
+        //tags = "@regression",
         plugin = {
                 "pretty",
                 "json:target/cucumber-report/cucumber.json",
